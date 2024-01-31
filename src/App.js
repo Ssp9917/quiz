@@ -4,6 +4,7 @@ import Listing from "./components/Listing";
 import Create from "./components/Create";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import Hero from "./components/Hero";
 
 
 // Import the functions you need from the SDKs you need
@@ -36,7 +37,7 @@ function App() {
       children: [
         {
           path: "",
-          element: '',
+          element: <Hero/>,
         },
         {
           path: "listing",
@@ -75,8 +76,8 @@ function App() {
 
 export default App;
 
-export const ProtectedRoutes = (children) =>{
-  if(localStorage.getItem('ebharat')){
+export const ProtectedRoutes = ({children}) =>{
+  if(localStorage.getItem('quiz')){
     return children
   }else{
     return <Navigate to='/login'/>

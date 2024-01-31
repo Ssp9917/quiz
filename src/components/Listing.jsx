@@ -1,41 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { getDatabase, ref, onValue } from "firebase/database";
+import React, { useContext, useEffect, useState } from "react";
+import { MainContext } from "../context/Context";
 
 const Listing = () => {
-  const [quiz, setQuiz] = useState([]);
+ 
 
-  const getDataFromDb = () => {
+ const {quiz} = useContext(MainContext)
 
-    const db = getDatabase();
-    const starCountRef = ref(db, "quizes");
-    onValue(starCountRef, (snapshot) => {
-      const data = snapshot.val();
-      // console.log(data);
-
-      let keys = Object.keys(data)
-      console.log(keys)
-      const arr = []
-
-      for(let k of keys){
-        arr.push(
-          {
-            ...data[k],
-            id:k
-          }
-        )
-      }
-
-      console.log(arr)
-      setQuiz(arr)
-    });
-
-
-  };
-
-  useEffect(
-    getDataFromDb,
-    []
-  )
+ 
 
   return (
     <>
